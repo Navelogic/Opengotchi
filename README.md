@@ -25,6 +25,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 [Talvez esse guia de contribuição seja melhor para você!](https://github.com/Navelogic/Opengotchi/blob/main/CONTRIBUTING.md)
 
 ## Licença
-Este projeto é licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto é licenciado sob a Licença MIT. Veja o arquivo [LICENSE](https://github.com/Navelogic/Opengotchi/blob/main/LICENSE) para mais detalhes.
 
 ### Feito pela turma de ADS - Unicesumar 2024 💻
