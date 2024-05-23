@@ -22,6 +22,8 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 - Abra um Pull Request.
 - Aguarde...
 
+[Talvez esse guia de contribuição seja melhor para você!](https://github.com/Navelogic/Opengotchi/blob/main/CONTRIBUTING.md)
+
 ## Licença
 Este projeto é licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
