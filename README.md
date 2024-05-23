@@ -1,6 +1,9 @@
 # Opengotchi 👾
 Uma versão de código aberto e baseada em API do clássico bichinho virtual: [Tamagotchi](https://pt.wikipedia.org/wiki/Tamagotchi).
 
+![OPENGOTHI LOGO](https://github.com/Navelogic/Opengotchi/assets/93350805/bcc11acf-9a49-4b90-ab16-edd86819bc8f)
+
+
 ## Visão Geral
 Opengotchi permite que desenvolvedores integrem um bichinho virtual em suas aplicações através de uma API.
 
