@@ -16,7 +16,6 @@ Opengotchi permite que desenvolvedores integrem um bichinho virtual em suas apli
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests no repositório.
 
 ### Não sabe contribuir? Segue o passo a passo:
-- Faça um fork do projeto.
 - Crie uma branch para sua alteração.
 - Commit suas mudanças.
 - Push para a branch main.
