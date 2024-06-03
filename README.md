@@ -29,5 +29,3 @@ Temos formas de contribuição para esses casos também: [Só vir nessa page...]
 
 ## Licença
 Este projeto é licenciado sob a Licença MIT. Veja o arquivo [LICENSE](https://github.com/Navelogic/Opengotchi/blob/main/LICENSE) para mais detalhes.
-
-### Feito pela turma de ADS - Unicesumar 2024 💻
