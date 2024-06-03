@@ -23,7 +23,7 @@ Nosso projeto utiliza diversas bibliotecas e frameworks, conforme especificado n
 
 - **Spring Boot**:
   - Versão: 3.1.11
-  - Dependências: `spring-boot-starter-data-jpa`, `spring-boot-starter-web`, `spring-boot-devtools`, `spring-boot-starter-test`
+  - Dependências: `spring-boot-starter-data-jpa`, `spring-boot-starter-web`, `spring-boot-devtools`, `spring-boot-starter-test`, `postgresql`
 
 - **Banco de Dados**:
   - Dependência: `com.h2database:h2`
