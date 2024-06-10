@@ -24,6 +24,11 @@ public class GotchiResorce {
         return ResponseEntity.ok(gotchiService.count());
     }
 
+    @GetMapping("/api-test")
+    public ResponseEntity<String> apiTest() {
+        return ResponseEntity.ok(gotchiService.apiTest());
+    }
+
     @DeleteMapping("/delete-all")
     public ResponseEntity<Void> delete() {
         gotchiService.delete();
