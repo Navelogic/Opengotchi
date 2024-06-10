@@ -20,6 +20,12 @@ public class GotchiService {
     @Autowired
     private GotchiRepository gotchiRepository;
 
+    /* Criando um Gotchi
+    * */
+    public Gotchi create(Gotchi gotchi){
+        return gotchiRepository.save(gotchi);
+    }
+
     public List<Gotchi> findAll(){
         return gotchiRepository.findAll();
     }

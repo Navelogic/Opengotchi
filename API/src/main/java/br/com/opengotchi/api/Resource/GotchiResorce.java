@@ -26,7 +26,7 @@ public class GotchiResorce {
     }
 
     @DeleteMapping("/delete-all")
-    public ResponseEntity<Void> delete() {
+    public ResponseEntity<Void> nuke() {
         gotchiService.delete();
         return ResponseEntity.noContent().build();
     }
