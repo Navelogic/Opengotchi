@@ -1,12 +1,13 @@
 package br.com.opengotchi.api.Resource;
 
 import br.com.opengotchi.api.Service.GotchiService;
+import br.com.opengotchi.api.Util.ConvertDados;
+import br.com.opengotchi.api.Util.Model.DadosDigimon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/gotchis")
@@ -24,14 +25,40 @@ public class GotchiResorce {
         return ResponseEntity.ok(gotchiService.count());
     }
 
-    @GetMapping("/api-test")
-    public ResponseEntity<String> apiTest() {
-        return ResponseEntity.ok(gotchiService.apiTest());
-    }
-
     @DeleteMapping("/delete-all")
-    public ResponseEntity<Void> delete() {
+    public ResponseEntity<Void> nuke() {
         gotchiService.delete();
         return ResponseEntity.noContent().build();
+    }
+
+    // API - Digimon
+    @GetMapping("/digimon/id/{id}")
+    public ResponseEntity<?> findDigimonById(@PathVariable("id") String id){
+        var convertDados = new ConvertDados();
+        return ResponseEntity.ok(convertDados.convertJsonToObject(gotchiService.findDigimonById(id), DadosDigimon.class));
+    }
+
+    @GetMapping("digimon/nome/{nome}")
+    public ResponseEntity<?> findDigimonByName(@PathVariable("nome") String nome) {
+        var convertDados = new ConvertDados();
+        var validador = convertDados.convertJsonToObject(gotchiService.findDigimonByName(nome), DadosDigimon.class);
+        if (validador.id() == null){
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(convertDados.convertJsonToObject(gotchiService.findDigimonByName(nome), DadosDigimon.class));
+        }
+    }
+
+    @GetMapping("/digimon/all")
+    public ResponseEntity<?> findAllDigimon() {
+        List<DadosDigimon> digimons = gotchiService.findAllDigimon();
+        return ResponseEntity.ok(digimons);
+    }
+
+
+    @GetMapping("/api-test-digimon")
+    public ResponseEntity<?> apiTest() {
+        var convertDados = new ConvertDados();
+        return ResponseEntity.ok(convertDados.convertJsonToObject(gotchiService.apiTestDigimon(), DadosDigimon.class));
     }
 }

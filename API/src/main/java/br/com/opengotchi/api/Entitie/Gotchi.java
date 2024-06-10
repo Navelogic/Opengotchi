@@ -31,8 +31,8 @@ public class Gotchi implements Serializable {
     private String species;
     private String color;
 
-    private Integer age;
-    private Integer helth;
+    private Integer age = 1;
+    private Integer helth = 100;
     private Integer hearts = 10;
 
     private Instant lastFeed;
