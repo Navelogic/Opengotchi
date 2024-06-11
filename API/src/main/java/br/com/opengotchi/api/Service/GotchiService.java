@@ -20,21 +20,44 @@ public class GotchiService {
     @Autowired
     private GotchiRepository gotchiRepository;
 
-    /* Criando um Gotchi
-    * */
+    // OPERAÇÕES CRUD - Gotchi
+
+    // Criando um Gotchi
     public Gotchi create(Gotchi gotchi){
+        gotchi.setBornAt(java.time.Instant.now());
+        gotchi.setLastUpdate(java.time.Instant.now());
         return gotchiRepository.save(gotchi);
     }
 
+    // Deletando um Gotchi
+    public void nuke(Long id){
+        gotchiRepository.deleteById(id);
+    }
+
+    // Atualizando um Gotchi
+    public Gotchi update(Gotchi gotchi){
+        gotchi.setLastUpdate(java.time.Instant.now());
+        return gotchiRepository.save(gotchi);
+    }
+
+    // Listanto um Gotchi pelo id
+    public Gotchi findById(Long id){
+        return gotchiRepository.findById(id).orElse(null);
+    }
+
+    // Listando todos os Gotchis
     public List<Gotchi> findAll(){
         return gotchiRepository.findAll();
     }
+
+
+    // FIM OPERAÇÕES CRUD - Gotchi
 
     public Long count(){
         return gotchiRepository.count();
     }
 
-    public void delete(){
+    public void nuke(){
         gotchiRepository.deleteAll();
     }
 

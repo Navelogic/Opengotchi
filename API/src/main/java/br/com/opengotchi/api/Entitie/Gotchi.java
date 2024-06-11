@@ -26,9 +26,9 @@ public class Gotchi implements Serializable {
 
     private String name;
     private String pronoun;
-    private String mood;
+    private String mood = "Feliz";
     private String illness;
-    private String species;
+    private String species = "Gotchi";
     private String color;
 
     private Integer age = 1;
@@ -44,14 +44,14 @@ public class Gotchi implements Serializable {
     private Instant bornAt;
     private Instant deadAt;
 
-    private Boolean isDead;
-    private Boolean isSick;
-    private Boolean isSleeping;
-    private Boolean isHungry;
-    private Boolean isDirty;
+    private Boolean isDead = false;
+    private Boolean isSick= false;
+    private Boolean isSleeping = false;
+    private Boolean isHungry = false;
+    private Boolean isDirty = false;
 
-    private Boolean isImmune;
-    private Boolean isImortal;
+    private Boolean isImmune = false;
+    private Boolean isImortal = false;
 
-    private Boolean isPregnant;
+    private Boolean isPregnant = false;
 }
