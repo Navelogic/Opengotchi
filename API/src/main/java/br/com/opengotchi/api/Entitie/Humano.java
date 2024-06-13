@@ -32,9 +32,32 @@ public class Humano implements Serializable {
     private Instant lastUpdate;
     private Instant createdAt;
 
-    public void nasceu(){
+    public void nascer(){
         this.createdAt = Instant.now();
         this.lastLogin = Instant.now();
         this.lastUpdate = Instant.now();
+    }
+
+    public void atualizar(){
+        this.lastUpdate = Instant.now();
+    }
+
+    public void logar(){
+        this.lastLogin = Instant.now();
+    }
+
+    public void atualizarNome(String name){
+        this.name = name;
+        this.atualizar();
+    }
+
+    public void atualizarEmail(String email){
+        this.email = email;
+        this.atualizar();
+    }
+
+    public void atualizarSenha(String password){
+        this.password = password;
+        this.atualizar();
     }
 }
