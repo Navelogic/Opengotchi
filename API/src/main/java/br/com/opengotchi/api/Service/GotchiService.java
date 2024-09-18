@@ -1,104 +1,57 @@
 package br.com.opengotchi.api.Service;
 
-import br.com.opengotchi.api.Entitie.Gotchi;
+import br.com.opengotchi.api.Entitie.Gotchi.Gotchi;
+import br.com.opengotchi.api.Entitie.Humano;
 import br.com.opengotchi.api.Repository.GotchiRepository;
+import br.com.opengotchi.api.Repository.HumanoRepository;
 import br.com.opengotchi.api.Util.API_URLs;
 import br.com.opengotchi.api.Util.ConsumoAPI;
 import br.com.opengotchi.api.Util.Model.DadosDigimon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import java.util.UUID;
 
 @Service
 public class GotchiService {
+
+    private static final Logger log = LoggerFactory.getLogger(GotchiService.class);
     @Autowired
     private GotchiRepository gotchiRepository;
 
-    // OPERAÇÕES CRUD - Gotchi
+    @Autowired
+    private HumanoRepository humanoRepository;
 
-    // Criando um Gotchi
-    public Gotchi create(Gotchi gotchi){
-        gotchi.setBornAt(java.time.Instant.now());
-        gotchi.setLastUpdate(java.time.Instant.now());
-        return gotchiRepository.save(gotchi);
+    public Long quantidadeDeGotchis(){
+        log.info("Quantidade de gotchis: {}", gotchiRepository.count());
+        return gotchiRepository.count();
     }
 
-    // Deletando um Gotchi
-    public void nuke(Long id){
-        gotchiRepository.deleteById(id);
-    }
-
-    // Atualizando um Gotchi
-    public Gotchi update(Gotchi gotchi){
-        gotchi.setLastUpdate(java.time.Instant.now());
-        return gotchiRepository.save(gotchi);
-    }
-
-    // Listanto um Gotchi pelo id
-    public Gotchi findById(Long id){
-        return gotchiRepository.findById(id).orElse(null);
-    }
-
-    // Listando todos os Gotchis
     public List<Gotchi> findAll(){
         return gotchiRepository.findAll();
     }
 
-
-    // FIM OPERAÇÕES CRUD - Gotchi
-
-    public Long count(){
-        return gotchiRepository.count();
+    public Gotchi findById(UUID id){
+        return gotchiRepository.findById(id).orElse(null);
     }
 
-    public void nuke(){
-        gotchiRepository.deleteAll();
-    }
-
-    // API - Digimon
-    public String apiTestDigimon(){
-        var consumoAPI = new ConsumoAPI();
-        return consumoAPI.obterDadosAPI(API_URLs.DIGIMON + "1");
-    }
-
-    public String findDigimonById(String id){
-        var consumoAPI = new ConsumoAPI();
-        return consumoAPI.obterDadosAPI(API_URLs.DIGIMON + id);
-    }
-
-    public String findDigimonByName(String nome){
-        var consumoAPI = new ConsumoAPI();
-        return consumoAPI.obterDadosAPI(API_URLs.DIGIMON + nome);
-    }
-
-    public List<DadosDigimon> findAllDigimon() {
-        var consumoAPI = new ConsumoAPI();
-        var objectMapper = new ObjectMapper();
-        return IntStream.rangeClosed(1, 1460)
-                .parallel()
-                .mapToObj(i -> {
-                    String jsonResponse = consumoAPI.obterDadosAPI(API_URLs.DIGIMON + i);
-                    try {
-                        return objectMapper.readValue(jsonResponse, DadosDigimon.class);
-                    } catch (JsonProcessingException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
-
-    // API - Pokemon
-    public String apiTestPokemon(){
-        var consumoAPI = new ConsumoAPI();
-        return consumoAPI.obterDadosAPI(API_URLs.POKEMON + "1");
+    @Transactional
+    public Gotchi criarGotchi(Gotchi gotchi, UUID humanoID){
+        gotchi.nascer();
+        gotchi.setHumano(humanoRepository.findById(humanoID).orElse(null));
+        humanoRepository.findById(humanoID).ifPresent(humano -> {
+            humano.getGotchis().add(gotchi);
+            humanoRepository.save(humano);
+        });
+        log.info("Gotchi criado: {}", gotchi.getNome());
+        return gotchiRepository.save(gotchi);
     }
 }
