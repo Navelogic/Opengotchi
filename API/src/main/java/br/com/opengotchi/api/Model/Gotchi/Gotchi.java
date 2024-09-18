@@ -1,6 +1,6 @@
-package br.com.opengotchi.api.Entitie.Gotchi;
+package br.com.opengotchi.api.Model.Gotchi;
 
-import br.com.opengotchi.api.Entitie.Humano;
+import br.com.opengotchi.api.Model.Humano;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

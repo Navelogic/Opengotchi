@@ -1,7 +1,7 @@
-package br.com.opengotchi.api.Resource;
+package br.com.opengotchi.api.Controller;
 
-import br.com.opengotchi.api.Entitie.Gotchi.Gotchi;
-import br.com.opengotchi.api.Service.GotchiService;
+import br.com.opengotchi.api.Model.Gotchi.Gotchi;
+import br.com.opengotchi.api.Service.Model.GotchiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

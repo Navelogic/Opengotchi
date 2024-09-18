@@ -1,6 +1,6 @@
-package br.com.opengotchi.api.Entitie;
+package br.com.opengotchi.api.Model;
 
-import br.com.opengotchi.api.Entitie.Gotchi.Gotchi;
+import br.com.opengotchi.api.Model.Gotchi.Gotchi;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

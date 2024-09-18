@@ -1,21 +1,14 @@
-package br.com.opengotchi.api.Service;
+package br.com.opengotchi.api.Service.Model;
 
-import br.com.opengotchi.api.Entitie.Gotchi.Gotchi;
-import br.com.opengotchi.api.Entitie.Humano;
+import br.com.opengotchi.api.Model.Gotchi.Gotchi;
 import br.com.opengotchi.api.Repository.GotchiRepository;
 import br.com.opengotchi.api.Repository.HumanoRepository;
-import br.com.opengotchi.api.Util.API_URLs;
-import br.com.opengotchi.api.Util.ConsumoAPI;
-import br.com.opengotchi.api.Util.Model.DadosDigimon;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.List;
 
 import java.util.UUID;

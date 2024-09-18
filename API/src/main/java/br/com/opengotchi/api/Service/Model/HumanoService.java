@@ -1,6 +1,6 @@
-package br.com.opengotchi.api.Service;
+package br.com.opengotchi.api.Service.Model;
 
-import br.com.opengotchi.api.Entitie.Humano;
+import br.com.opengotchi.api.Model.Humano;
 import br.com.opengotchi.api.Repository.HumanoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.ILoggerFactory;

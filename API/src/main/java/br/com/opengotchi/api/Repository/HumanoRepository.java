@@ -1,6 +1,6 @@
 package br.com.opengotchi.api.Repository;
 
-import br.com.opengotchi.api.Entitie.Humano;
+import br.com.opengotchi.api.Model.Humano;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

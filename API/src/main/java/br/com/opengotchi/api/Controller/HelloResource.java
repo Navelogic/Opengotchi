@@ -1,4 +1,4 @@
-package br.com.opengotchi.api.Resource;
+package br.com.opengotchi.api.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

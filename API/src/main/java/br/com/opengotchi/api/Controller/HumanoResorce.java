@@ -1,7 +1,7 @@
-package br.com.opengotchi.api.Resource;
+package br.com.opengotchi.api.Controller;
 
-import br.com.opengotchi.api.Entitie.Humano;
-import br.com.opengotchi.api.Service.HumanoService;
+import br.com.opengotchi.api.Model.Humano;
+import br.com.opengotchi.api.Service.Model.HumanoService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
