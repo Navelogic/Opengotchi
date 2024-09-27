@@ -39,8 +39,9 @@ public class UsuarioService {
 
     @Transactional(readOnly = true)
     public UsuarioDTO findByEmail(String email) {
+        String emailCrip = SecureSaveUtil.secureSaveEmail(email);
         return UsuarioDTO.daEntidade(
-                usuarioRepository.findByEmail(email)
+                usuarioRepository.findByEmail(emailCrip)
                         .orElseThrow(() -> new UsuarioNaoEncontradoExeption("Usuário não encontrado com o email: " + email))
         );
     }
@@ -74,7 +75,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Long logar(String email, String senha) {
+    public Long login(String email, String senha) {
         String emailCriptografado = SecureSaveUtil.secureSaveEmail(email);
         String senhaCriptografada = SecureSaveUtil.secureSavePassword(senha);
 
@@ -92,7 +93,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioDTO atualizar(Long id, Usuario usuario) {
+    public UsuarioDTO update(Long id, Usuario usuario) {
         Usuario usuarioBanco = usuarioRepository.findById(id)
                 .orElseThrow(() -> new UsuarioNaoEncontradoExeption("Usuário não encontrado com o id: " + id));
 
@@ -119,7 +120,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void deletar(Long id) {
+    public void delete(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new UsuarioNaoEncontradoExeption("Usuário não encontrado com o id: " + id));
         usuarioRepository.delete(usuario);
