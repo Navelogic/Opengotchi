@@ -6,8 +6,7 @@ package br.com.opengotchi.api.Model.Usuario;
  */
 public record UsuarioSimplesDTO(
         Long id,
-        String nome,
-        String email
+        String nome
 ) {
     /**
      * Converte uma entidade Usuario para um UsuarioSimplesDTO.
@@ -18,8 +17,7 @@ public record UsuarioSimplesDTO(
     public static UsuarioSimplesDTO daEntidade(Usuario usuario) {
         return new UsuarioSimplesDTO(
                 usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail()
+                usuario.getNome()
         );
     }
 
@@ -32,7 +30,6 @@ public record UsuarioSimplesDTO(
         Usuario usuario = new Usuario();
         usuario.setId(this.id);
         usuario.setNome(this.nome);
-        usuario.setEmail(this.email);
         return usuario;
     }
 }

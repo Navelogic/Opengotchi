@@ -21,17 +21,17 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<UsuarioSimplesDTO> acharTodos(){
+    public List<UsuarioSimplesDTO> findAll(){
         return usuarioService.findAll();
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO acharPorId(@PathVariable Long id){
+    public UsuarioDTO findById(@PathVariable Long id){
         return usuarioService.findById(id);
     }
 
     @GetMapping("/email/{email}")
-    public UsuarioDTO acharPorEmail(@PathVariable String email){
+    public UsuarioDTO findByEmail(@PathVariable String email){
         return usuarioService.findByEmail(email);
     }
 
