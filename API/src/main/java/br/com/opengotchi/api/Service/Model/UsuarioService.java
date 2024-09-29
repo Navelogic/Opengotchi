@@ -38,6 +38,12 @@ public class UsuarioService {
     }
 
     @Transactional(readOnly = true)
+    public Usuario respostaCompleta(Long id){
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNaoEncontradoExeption("Usuário não encontrado com o id: " + id));
+    }
+
+    @Transactional(readOnly = true)
     public UsuarioDTO findByEmail(String email) {
         String emailCrip = SecureSaveUtil.secureSaveEmail(email);
         return UsuarioDTO.daEntidade(

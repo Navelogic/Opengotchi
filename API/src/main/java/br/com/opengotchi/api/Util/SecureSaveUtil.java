@@ -1,5 +1,6 @@
 package br.com.opengotchi.api.Util;
 
+import br.com.opengotchi.api.Config.Exception.SecureSave.SecureSaveException;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -23,7 +24,7 @@ public class SecureSaveUtil {
             byte[] hash = digest.digest(input.getBytes());
             return Base64.getEncoder().encodeToString(hash);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Erro ao criptografar string");
+            throw new SecureSaveException("Erro ao criptografar string");
         }
     }
 }

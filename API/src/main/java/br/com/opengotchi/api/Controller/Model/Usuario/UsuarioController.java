@@ -59,4 +59,9 @@ public class UsuarioController {
     public void delete(@PathVariable Long id){
         usuarioService.delete(id);
     }
+
+    @GetMapping("/respostaCompleta/{id}")
+    public Usuario respostaCompleta(@PathVariable Long id){
+        return usuarioService.respostaCompleta(id);
+    }
 }
