@@ -1,11 +1,12 @@
 package br.com.opengotchi.api;
 
-import br.com.opengotchi.api.Util.ConsumoAPI;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class ApiApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
