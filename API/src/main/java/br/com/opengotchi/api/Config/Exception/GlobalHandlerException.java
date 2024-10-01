@@ -1,5 +1,6 @@
 package br.com.opengotchi.api.Config.Exception;
 
+import br.com.opengotchi.api.Config.Exception.Gotchi.GotchiNaoEncontradoExeption;
 import br.com.opengotchi.api.Config.Exception.SecureSave.SecureSaveException;
 import br.com.opengotchi.api.Config.Exception.Usuario.UsuarioFaltandoAtributosException;
 import br.com.opengotchi.api.Config.Exception.Usuario.UsuarioJaExistenteExeption;
@@ -33,6 +34,11 @@ public class GlobalHandlerException {
     public ResponseEntity<Object> handleSecureSaveException(SecureSaveException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new RespostaParaErro(ex.getMessage()));
     }
+
+    @ExceptionHandler(GotchiNaoEncontradoExeption.class)
+        public ResponseEntity<Object> handleGotchiNaoEncontradoExeption(GotchiNaoEncontradoExeption ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new RespostaParaErro(ex.getMessage()));
+        }
 
     @Setter
     @Getter

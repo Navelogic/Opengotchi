@@ -1,4 +1,4 @@
-package br.com.opengotchi.api.Util;
+package br.com.opengotchi.api.Service.NotModel;
 
 import br.com.opengotchi.api.Config.Exception.SecureSave.SecureSaveException;
 import org.springframework.stereotype.Service;

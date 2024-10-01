@@ -4,8 +4,7 @@ import br.com.opengotchi.api.Model.Gotchi.Gotchi;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 
 @Repository
-public interface GotchiRepository extends JpaRepository<Gotchi, UUID> {
+public interface GotchiRepository extends JpaRepository<Gotchi, Long> {
 }

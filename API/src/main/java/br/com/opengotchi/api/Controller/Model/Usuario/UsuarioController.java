@@ -3,7 +3,7 @@ package br.com.opengotchi.api.Controller.Model.Usuario;
 import br.com.opengotchi.api.Model.Usuario.Usuario;
 import br.com.opengotchi.api.Model.Usuario.UsuarioDTO;
 import br.com.opengotchi.api.Model.Usuario.UsuarioSimplesDTO;
-import br.com.opengotchi.api.Service.Model.UsuarioService;
+import br.com.opengotchi.api.Service.Model.Usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
-package br.com.opengotchi.api.Service.Model;
+package br.com.opengotchi.api.Service.Model.Usuario;
 
 import br.com.opengotchi.api.Config.Exception.Usuario.*;
 import br.com.opengotchi.api.Model.Usuario.*;
 import br.com.opengotchi.api.Repository.UsuarioRepository;
-import br.com.opengotchi.api.Util.SecureSaveUtil;
+import br.com.opengotchi.api.Service.NotModel.SecureSaveUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
