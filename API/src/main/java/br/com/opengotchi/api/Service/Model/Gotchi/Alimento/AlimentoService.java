@@ -44,7 +44,6 @@ public class AlimentoService {
     @Scheduled(fixedRate = 15000)
     @Transactional
     public void aumentarFome() {
-        log.info("Aumentando fome dos gotchis");
         List<Gotchi> gotchis = gotchiRepository.findAll();
         int numeroDeRefeicoes = 3;
         int fomeMaxima = 100;

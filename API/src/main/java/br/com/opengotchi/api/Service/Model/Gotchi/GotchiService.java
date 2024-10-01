@@ -15,8 +15,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -80,40 +78,7 @@ public class GotchiService {
         alimentoService.alimentar(id, nomeComida);
     }
 
-    @Scheduled(fixedRate = 20000)
-    @Transactional
-    public void diminuirEnergia() {
-        List<Gotchi> gotchis = gotchiRepository.findAll();
-        int horasParaDormir = 8;
-        int energiaMaxima = 100;
 
-        for (Gotchi gotchi : gotchis) {
-            if (gotchi.getEstagio_vida() == EstagioVidaList.MORTO) {
-                continue;
-            }
-
-            Instant agora = Instant.now();
-
-            if (gotchi.getUltimo_sono() == null) {
-                gotchi.setUltimo_sono(agora);
-                gotchi.setEnergia(energiaMaxima);
-                gotchiRepository.save(gotchi);
-                continue;
-            }
-
-            long horasDesdeUltimoSono = Duration.between(gotchi.getUltimo_sono(), agora).toHours();
-            if (gotchi.isDormindo()) {
-                int aumentoDeEnergia = (energiaMaxima / horasParaDormir) * (int) horasDesdeUltimoSono;
-                gotchi.setEnergia(Math.min(gotchi.getEnergia() + aumentoDeEnergia, energiaMaxima));
-            } else {
-                int diminuicaoDeEnergia = (energiaMaxima / 24) * (int) horasDesdeUltimoSono;
-                gotchi.setEnergia(Math.max(gotchi.getEnergia() - diminuicaoDeEnergia, 0));
-            }
-
-            gotchi.setUltimo_sono(agora);
-            gotchiRepository.save(gotchi);
-        }
-    }
 
     @Scheduled(fixedRate = 30000)
     @Transactional
