@@ -25,17 +25,18 @@ public class DescansarService {
     @Transactional
     public void dormir(Gotchi gotchi) {
         gotchi.setDormindo(true);
-        if (gotchi.getUltimo_sono() == null) {
-            gotchi.setUltimo_sono(Instant.now());
-        }
+        gotchi.setUltimo_sono(Instant.now());
+        gotchi.setVezes_sem_dormir(0);
         gotchiRepository.save(gotchi);
     }
 
     @Transactional
     public void acordar(Gotchi gotchi) {
         gotchi.setDormindo(false);
+        gotchi.setUltimo_despertar(Instant.now());
         gotchiRepository.save(gotchi);
     }
+
 
     @Scheduled(fixedRate = 20000)
     @Transactional
@@ -45,6 +46,8 @@ public class DescansarService {
         int taxaRecuperacaoPorHora = 5;
         int taxaReducaoPorHora = 2;
         int taxaAumentadaParaIdoso = 5;
+        int energiaMinimaParaDormir = 20;
+        int limiteVezesSemDormir = 3;
 
         for (Gotchi gotchi : gotchis) {
             if (gotchi.getEstagio_vida() == EstagioVidaList.MORTO || gotchi.getEstagio_vida() == EstagioVidaList.OVO)
@@ -62,6 +65,18 @@ public class DescansarService {
 
                 if (gotchi.isDormindo()) {
                     gotchi.setUltimo_sono(agora);
+                    if (gotchi.getEnergia() >= energiaMaxima) {
+                        acordar(gotchi);
+                    }
+                } else if (gotchi.getEnergia() <= energiaMinimaParaDormir) {
+                    dormir(gotchi);
+                    gotchi.setVezes_sem_dormir(gotchi.getVezes_sem_dormir() + 1);
+
+                    if (gotchi.getVezes_sem_dormir() >= limiteVezesSemDormir) {
+                        gotchi.setEstagio_vida(EstagioVidaList.MORTO);
+                        gotchi.setHora_morte(agora);
+                        gotchi.setCausa_morte("Falta de descanso");
+                    }
                 }
             }
             gotchiRepository.save(gotchi);

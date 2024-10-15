@@ -52,12 +52,14 @@ public class Gotchi {
     @JoinColumn(name = "personalidade_id", nullable = false)
     private Personalidade personalidade;
 
-    // Atributos de status do Gotchi
+
     private Integer fome = 0;
     private Instant ultima_refeicao;
 
     private Integer energia = 100;
     private Instant ultimo_sono;
+    private Integer vezes_sem_dormir = 0;
+    private Instant ultimo_despertar;
 
     private Instant hora_morte;
     private String causa_morte;
