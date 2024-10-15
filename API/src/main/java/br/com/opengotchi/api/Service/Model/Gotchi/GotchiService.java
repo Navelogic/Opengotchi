@@ -6,6 +6,7 @@ import br.com.opengotchi.api.Repository.CorRepository;
 import br.com.opengotchi.api.Repository.GotchiRepository;
 import br.com.opengotchi.api.Repository.PersonalidadeRepository;
 import br.com.opengotchi.api.Service.Model.Gotchi.Alimento.AlimentoService;
+import br.com.opengotchi.api.Service.Model.Gotchi.Descansar.DescansarService;
 import br.com.opengotchi.api.Service.Model.Gotchi.Morte.MorteService;
 import br.com.opengotchi.api.Util.EstagioVidaList;
 import org.slf4j.Logger;
@@ -27,14 +28,16 @@ public class GotchiService {
     private final PersonalidadeRepository personalidadeRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(GotchiService.class);
+    private final DescansarService descansarService;
 
     @Autowired
-    public GotchiService(MorteService morteService, AlimentoService alimentoService, GotchiRepository gotchiRepository, CorRepository corRepository, PersonalidadeRepository personalidadeRepository) {
+    public GotchiService(MorteService morteService, AlimentoService alimentoService, GotchiRepository gotchiRepository, CorRepository corRepository, PersonalidadeRepository personalidadeRepository, DescansarService descansarService) {
         this.morteService = morteService;
         this.alimentoService = alimentoService;
         this.gotchiRepository = gotchiRepository;
         this.corRepository = corRepository;
         this.personalidadeRepository = personalidadeRepository;
+        this.descansarService = descansarService;
     }
 
     @Transactional(readOnly = true)
@@ -55,15 +58,11 @@ public class GotchiService {
         }
 
         if (codigo.equals("4002")){
-            // Selecionando estadio de vida aleatório da lista Enum EstagioVidaList
             gotchi.setEstagio_vida(EstagioVidaList.values()[(int) (Math.random() * EstagioVidaList.values().length)]);
-
-            // Selecionando cores aleatórias a partir de Query Method
             gotchi.setCor_pele(corRepository.getRandom());
             gotchi.setCor_olhos(corRepository.getRandom());
             gotchi.setCor_cabelo(corRepository.getRandom());
 
-            // Selecionando personalidade aleatória a partir de Query Method e Genero da personalidade seja igual ao genero do Gotchi
             do {
                 gotchi.setPersonalidade(personalidadeRepository.getRandom());
             } while (gotchi.getGenero() != gotchi.getPersonalidade().getGenero());
@@ -76,6 +75,11 @@ public class GotchiService {
     @Transactional
     public void alimentar(Long id, String nomeComida) {
         alimentoService.alimentar(id, nomeComida);
+    }
+
+    @Transactional
+    public void dormir(Long id){
+        descansarService.dormir(findById(id));
     }
 
 
