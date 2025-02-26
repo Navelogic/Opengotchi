@@ -39,8 +39,5 @@ Para rodar o Opengotchi localmente, você precisará do Java 17 e do Spring Boot
 
 Verifique o arquivo `application-dev.properties` para configurar o acesso ao banco de dados MySQL e consulte a documentação da API no diretório `API` do repositório para mais detalhes sobre como interagir com o Opengotchi.
 
-## Diário do Desenvolvedor
-Navelogic (autor deste documento) compartilha o processo de criação da API no Reddit. Confira os posts: [Estou criando o próximo Tamagotchi.](https://www.reddit.com/r/brdev/comments/1fqv8br/estou_criando_o_pr%C3%B3ximo_tamagotchi/)
-
 ## Licença
 Este projeto é licenciado sob a Licença MIT. Veja o arquivo [LICENSE](https://github.com/Navelogic/Opengotchi/blob/main/LICENSE) para mais detalhes.
