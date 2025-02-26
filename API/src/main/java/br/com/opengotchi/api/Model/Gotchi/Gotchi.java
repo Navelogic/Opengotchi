@@ -1,16 +1,17 @@
 package br.com.opengotchi.api.Model.Gotchi;
 
-import br.com.opengotchi.api.Util.EstagioVidaList;
-import br.com.opengotchi.api.Util.GeneroList;
-import br.com.opengotchi.api.Util.Model.Cor;
-import br.com.opengotchi.api.Util.Model.Personalidade;
+import br.com.opengotchi.api.Util.List.GenderList;
+import br.com.opengotchi.api.Util.List.LifeStageList;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "gotchis")
@@ -18,60 +19,44 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Gotchi {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    // Identificação do Gotchi
+    @NotBlank(message = "Name is required")
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
+    @NotNull(message = "Gender is required")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private GeneroList genero;
+    private GenderList gender;
 
+    @NotNull(message = "Life stage is required")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EstagioVidaList estagio_vida = EstagioVidaList.OVO;
+    private LifeStageList lifeStage = LifeStageList.EGG;
 
-    @ManyToOne
-    @JoinColumn(name = "cor_pele_id", nullable = false)
-    private Cor cor_pele;
+    @Embedded
+    private Physical physical;
 
-    @ManyToOne
-    @JoinColumn(name = "cor_olhos_id", nullable = false)
-    private Cor cor_olhos;
+    @Embedded
+    private Needs needs;
 
-    @ManyToOne
-    @JoinColumn(name = "cor_cabelo_id", nullable = false)
-    private Cor cor_cabelo;
-
-    @ManyToOne
-    @JoinColumn(name = "personalidade_id", nullable = false)
-    private Personalidade personalidade;
-
-
-    private Integer fome = 0;
-    private Instant ultima_refeicao;
-
-    private Integer energia = 100;
-    private Instant ultimo_sono;
-    private Integer vezes_sem_dormir = 0;
-    private Instant ultimo_despertar;
-
-    private Instant hora_morte;
-    private String causa_morte;
-
+    @Embedded
+    private Skills skills;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private Instant criado_em;
+    private Instant createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    private Instant ultima_atualizacao;
+    private Instant lastUpdate;
 
-    private boolean dormindo = false;
+    @Column(nullable = false)
+    private Boolean sleeping = false;
 }
