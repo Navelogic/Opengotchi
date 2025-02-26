@@ -8,7 +8,8 @@ Uma versão de código aberto e baseada em API do clássico bichinho virtual: [T
 
 ## Princípios
 - **Código Aberto:** Licenciado sob a Licença MIT, permitindo uso, modificação e distribuição livre.
-- **Baseado em API:** Interaja com o bichinho virtual através de endpoints RESTful.
+- **API:** Interaja com o bichinho virtual através de endpoints RESTful.
+- **WEB:** Em breve!
 - **WORA:** Escreva uma vez, rode em qualquer lugar.
 
 ## Contribuindo
